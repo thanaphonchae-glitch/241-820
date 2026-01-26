@@ -1,27 +1,14 @@
-function submitData() {
-    let firstName = document.querySelector('input[name="firstName"]');
-    let lastName = document.querySelector('input[name="lastName"]');
-    let age = document.querySelector('input[name="age"]');
+// กำหนดค่าตัวแปร host และ port
+const host = 'localhost'; // หรือค่าอื่น ๆ ตามที่คุณต้องการ
+const port = 3000; // หรือพอร์ตที่คุณต้องการ
 
-    let gender = document.querySelector('input[name="gender"]:checked');
-    let interests = document.querySelectorAll('input[name="interest"]:checked');
-    let description = document.querySelector('textarea[name="description"]');
-    
-    let interest=''
-    for (let i = 0; i < interests.length; i++) {
-        interest+=interests[i].value
-        if(i!==interests.length-1){
-            interest+=', '
-        }
-    }
+// สร้าง server
+const http = require('http');
 
-    let userData = {
-        firstName: firstNameDOM.value,
-        lastName: lastNameDOM.value,
-        age: ageDOM.value,
-        gender: genderdDOM.value,
-        description: descriptionDOM.value,
-        interests: []
-    }
-    console.log("submitData -> userData", userData);
-}
+const server = http.createServer((req, res) => {
+  res.end('My First Server');
+});
+
+server.listen(port, host, () => {
+  console.log(`Server is running on http://${host}:${port}`);
+});
